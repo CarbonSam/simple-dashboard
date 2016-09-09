@@ -1,0 +1,23 @@
+/* To Do List Project Styles */
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,300,700');
+
+.list-group-item {
+  overflow: hidden;
+  font-size: 17px;
+}
+.list-group-item .btn {
+  padding: 2px 5px !important;
+}
+.list-group-item .btn span {
+  /* color: transparent; */
+}
+
+
+/* Fonts */
+h1, h2, h3, h4, h5, h6, p, body {
+  font-family: 'Quicksand', sans-serif !important;
+  font-weight: 400 !important;
+}
+h1, h2, h3 {
+  font-weight: 700 !important;
+}
