@@ -1,0 +1,33 @@
+{
+  "name": "simple-dashboard",
+  "version": "1.0.0",
+  "description": "A simple dashboard with time, date, weather, and a simple to-do list.",
+  "main": "code.js",
+  "scripts": {
+    "build": "webpack --progress -p",
+    "test": "jest --watchAll"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CarbonSam/simple-dashboard.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CarbonSam/simple-dashboard/issues"
+  },
+  "homepage": "https://github.com/CarbonSam/simple-dashboard#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-jest": "^21.2.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-root-import": "^5.1.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "babel-root-import": "^4.1.8",
+    "eslint-loader": "^1.9.0",
+    "jest": "^21.2.1",
+    "webpack": "^3.8.1"
+  }
+}
