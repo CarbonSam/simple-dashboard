@@ -21,7 +21,7 @@ $(document).ready(function() {
   var divInProgressTaskList = document.getElementById('inProgressTaskList');
   var divCompletedTaskList = document.getElementById('completedTaskList');
 
-  var taskItemBegining = '<a class='task list-group-item' ';
+  var taskItemBegining = '<a class="task list-group-item" ';
   var taskItemEnding = '';
   var defaultTaskListStructure = {
     'toDo':[],
@@ -130,7 +130,7 @@ $(document).ready(function() {
     for (var inProgressItem in taskList.inProgress) {
       if (taskList.inProgress[inProgressItem] != null) {
         var itemName = taskList.inProgress[inProgressItem].taskName;
-        inProgressHTML += taskItemBegining + 'id='task-' + inProgressItem + ''>' + itemName + '<button id='' + inProgressItem + 'btn' class='btn btn-default task-complete-btn pull-right' type='button'><span class='glyphicon glyphicon-ok'></span></button></a>';
+        inProgressHTML += taskItemBegining + 'id="task-' + inProgressItem + '">' + itemName + '<button id="' + inProgressItem + 'btn" class="btn btn-default task-complete-btn pull-right" type="button"><span class="glyphicon glyphicon-ok"></span></button></a>';
         numInProgressTasks++;
       }
     }
@@ -140,7 +140,7 @@ $(document).ready(function() {
     for (var completedItem in taskList.completed) {
       if (taskList.completed[completedItem] != null) {
         var itemName = taskList.completed[completedItem].taskName;
-        completedTaskListHTML += taskItemBegining + 'id='task-' + completedItem + ''>' + itemName + '<button id='' + completedItem + 'btn' class='btn btn-default task-delete-btn pull-right' type='button'><span class='glyphicon glyphicon-trash'></span></button></a>';
+        completedTaskListHTML += taskItemBegining + 'id="task-' + completedItem + '">' + itemName + '<button id="' + completedItem + 'btn" class="btn btn-default task-delete-btn pull-right" type="button"><span class="glyphicon glyphicon-trash"></span></button></a>';
         numCompletedTasks++;
       }
     }
@@ -243,10 +243,10 @@ $(document).ready(function() {
     var currentWeather = 'http://api.openweathermap.org/data/2.5/weather?zip=37027,us&units=imperial&appid=' + weatherApiKey;
     $.getJSON(currentWeather, function(data) {
       console.log('Weather updated at ' + currentTimeString);
-      var currentTemp = Math.round(data.main.temp) + '<i class='wi wi-fahrenheit'></i>';
-      var currentHumidity = '<span class='pull-right'><i class='wi wi-humidity'></i> ' + Math.round(data.main.humidity) + '%</span>';
-      var currentWindSpeed = '<span class='pull-left'><i class='wi wi-strong-wind'></i> ' + Math.round(data.wind.speed) + 'mph</span>';
-      var currentIcon = '<i class='wi wi-owm-day-' + data.weather[0].id + ''></i>';
+      var currentTemp = Math.round(data.main.temp) + '<i class="wi wi-fahrenheit"></i>';
+      var currentHumidity = '<span class="pull-right"><i class="wi wi-humidity"></i> ' + Math.round(data.main.humidity) + '%</span>';
+      var currentWindSpeed = '<span class="pull-left"><i class="wi wi-strong-wind"></i> ' + Math.round(data.wind.speed) + 'mph</span>';
+      var currentIcon = '<i class="wi wi-owm-day-' + data.weather[0].id + '"></i>';
       divCurrentWeather.innerHTML = '<h1>' + currentIcon + ' ' + currentTemp + '</h1><br/><p>' + currentWindSpeed + ' ' + currentHumidity + '</p>';
     });
   }
