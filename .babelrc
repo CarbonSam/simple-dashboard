@@ -1,0 +1,15 @@
+{
+  "presets": [
+    ["es2015", { "modules": false }]
+  ],
+  "plugins": [
+    ["babel-plugin-root-import", {"rootPathSuffix": "src"}]
+  ],
+  "env": {
+    "test": {
+      "presets": [
+        "es2015"
+      ]
+    }
+  }
+}

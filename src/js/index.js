@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-  document.getElementById("btnAddTask").addEventListener("click", AddNewTask);
+  document.getElementById('btnAddTask').addEventListener('click', AddNewTask);
 
   // ====== Variables ======
   var savedTaskListFileName = 'savedTaskList';
@@ -24,9 +24,9 @@ $(document).ready(function() {
   var taskItemBegining = '<a class="task list-group-item" ';
   var taskItemEnding = '';
   var defaultTaskListStructure = {
-    "toDo":[],
-    "inProgress":[],
-    "completed":[]
+    'toDo':[],
+    'inProgress':[],
+    'completed':[]
   };
   var taskList = LoadTasksLists();
 
@@ -35,8 +35,8 @@ $(document).ready(function() {
   var txtCurrentDate = document.getElementById('txtCurrentDate');
   var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  var currentTimeString = "";
-  var currentDateString = "";
+  var currentTimeString = '';
+  var currentDateString = '';
   var currentHours;
   var currentMinutes;
   var currentTime = new Date();
@@ -61,10 +61,10 @@ $(document).ready(function() {
   function AddNewTask() {
     var newTaskName = txtNewTask.value;
     var newTaskId = taskList.toDo.length;
-    txtNewTask.value = "";
+    txtNewTask.value = '';
 
     taskList.toDo[newTaskId] = {
-      "taskName":newTaskName
+      'taskName':newTaskName
     };
 
     UpdateTaskLists();
@@ -76,7 +76,7 @@ $(document).ready(function() {
     var newTaskId = taskList.inProgress.length;
 
     taskList.inProgress[newTaskId] = {
-      "taskName":taskName
+      'taskName':taskName
     };
     delete taskList.toDo[oldTaskId];
 
@@ -89,7 +89,7 @@ $(document).ready(function() {
     var newTaskId = taskList.completed.length;
 
     taskList.completed[newTaskId] = {
-      "taskName":taskName
+      'taskName':taskName
     };
     delete taskList.inProgress[oldTaskId];
 
@@ -116,7 +116,7 @@ $(document).ready(function() {
     for (var toDoItem in taskList.toDo) {
       if (taskList.toDo[toDoItem] != null) {
         var itemName = taskList.toDo[toDoItem].taskName;
-        toDoListHTML += taskItemBegining + 'id="task-' + toDoItem + '">' + itemName + '<button id="' + toDoItem + 'btn" class="btn btn-default task-move-btn pull-right" type="button"><span class="glyphicon glyphicon-arrow-right"></span></button></a>';
+        toDoListHTML += taskItemBegining + 'id="task-' + toDoItem + '">' + itemName + '<button id="' + toDoItem + 'btn class="btn btn-default task-move-btn pull-right" type="button"><span class="glyphicon glyphicon-arrow-right"></span></button></a>';
         numToDoTasks++;
       }
     }
@@ -152,22 +152,22 @@ $(document).ready(function() {
     document.getElementById('numCompletedTasks').innerHTML = numCompletedTasks;
 
     // Add event handlers for all move to in progress buttons
-    var allBtns = document.getElementsByClassName("task-move-btn");
+    var allBtns = document.getElementsByClassName('task-move-btn');
     for (var i = 0; i < allBtns.length; i++)
     {
-       allBtns[i].addEventListener("click", MoveToInProgress);
+       allBtns[i].addEventListener('click', MoveToInProgress);
     }
     // Add event handlers for all complete buttons
-    var allBtns = document.getElementsByClassName("task-complete-btn");
+    var allBtns = document.getElementsByClassName('task-complete-btn');
     for (var i = 0; i < allBtns.length; i++)
     {
-       allBtns[i].addEventListener("click", CompleteTask);
+       allBtns[i].addEventListener('click', CompleteTask);
     }
     // Add event handlers for all delete buttons
-    var allBtns = document.getElementsByClassName("task-delete-btn");
+    var allBtns = document.getElementsByClassName('task-delete-btn');
     for (var i = 0; i < allBtns.length; i++)
     {
-       allBtns[i].addEventListener("click", DeleteTask);
+       allBtns[i].addEventListener('click', DeleteTask);
     }
 
     SaveTaskLists();
@@ -206,16 +206,16 @@ $(document).ready(function() {
     currentDay = currentTime.getDay();
     var currentMonth = currentTime.getMonth();
     var currentDate = currentTime.getDate();
-    var dateSuffix = "";
+    var dateSuffix = '';
     var currentYear = currentTime.getFullYear();
     currentHours = currentTime.getHours();
     currentMinutes = currentTime.getMinutes();
     var currentSeconds = currentTime.getSeconds();
 
-    currentMinutes = ( currentMinutes < 10 ? "0" : "" ) + currentMinutes;
-    currentSeconds = ( currentSeconds < 10 ? "0" : "" ) + currentSeconds;
+    currentMinutes = ( currentMinutes < 10 ? '0' : '' ) + currentMinutes;
+    currentSeconds = ( currentSeconds < 10 ? '0' : '' ) + currentSeconds;
 
-    var timeOfDay = (currentHours < 12 ) ? "AM" : "PM";
+    var timeOfDay = (currentHours < 12 ) ? 'AM' : 'PM';
     currentHours = (currentHours > 12) ? currentHours - 12 : currentHours;
     currentHours = (currentHours == 0) ? 12 : currentHours;
 
@@ -229,7 +229,7 @@ $(document).ready(function() {
       dateSuffix = 'th';
     }
 
-    currentTimeString = currentHours + ":" + currentMinutes + ":" + currentSeconds + " " + timeOfDay;
+    currentTimeString = currentHours + ':' + currentMinutes + ':' + currentSeconds + ' ' + timeOfDay;
     currentDateString = days[currentDay] + ', ' + months[currentMonth] + ' ' + currentDate + dateSuffix + ', ' + currentYear;
 
     txtCurrentTime.innerHTML = currentTimeString;
@@ -242,7 +242,7 @@ $(document).ready(function() {
   function UpdateWeather() {
     var currentWeather = 'http://api.openweathermap.org/data/2.5/weather?zip=37027,us&units=imperial&appid=' + weatherApiKey;
     $.getJSON(currentWeather, function(data) {
-      console.log("Weather updated at " + currentTimeString);
+      console.log('Weather updated at ' + currentTimeString);
       var currentTemp = Math.round(data.main.temp) + '<i class="wi wi-fahrenheit"></i>';
       var currentHumidity = '<span class="pull-right"><i class="wi wi-humidity"></i> ' + Math.round(data.main.humidity) + '%</span>';
       var currentWindSpeed = '<span class="pull-left"><i class="wi wi-strong-wind"></i> ' + Math.round(data.wind.speed) + 'mph</span>';
@@ -258,7 +258,7 @@ $(document).ready(function() {
     var currentQuote = 'http://quotes.rest/qod.json';
     var didUpdate = false;
     $.getJSON(currentQuote, function(quoteData) {
-      console.log("Quote updated at " + currentTimeString);
+      console.log('Quote updated at ' + currentTimeString);
       var quoteContent = '<p>' + quoteData.contents.quotes[0].quote + '</p>';
       var quoteAuthor = '<footer><cite>' + quoteData.contents.quotes[0].author + '</cite></footer>';
       divDailyQuote.innerHTML = '<blockquote>' + quoteContent + quoteAuthor + '</blockquote>';
