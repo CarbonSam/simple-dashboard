@@ -5,7 +5,8 @@
   "main": "code.js",
   "scripts": {
     "build": "webpack --progress -p",
-    "test": "jest --watchAll"
+    "test": "jest --watchAll",
+    "start": "http-server dist"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,7 @@
     "babel-root-import": "^4.1.8",
     "eslint": "^4.9.0",
     "eslint-loader": "^1.9.0",
+    "http-server": "^0.10.0",
     "jest": "^21.2.1",
     "webpack": "^3.8.1"
   }
