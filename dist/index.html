@@ -12,86 +12,37 @@
         <link rel="stylesheet" href="css/weather-icons.css">
         <link rel="stylesheet" href="style.css">
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
         <script type="text/javascript" src="js/js-library-bundle.js"></script>
     </head>
     <body>
       <div class="container">
-
-      <div class="page-header">
-        <h1>My Dashboard</h1>
-      </div>
-
-      <div id="dayStatus">
-        <p>Status goes here (aka: Time to head home)</p>
-      </div>
-
-      <div class="jumbotron">
-        <div class="row">
-
-          <div class="col-md-6">
-            <h1 id="txtCurrentTime">&nbsp;</h1>
-            <p id="txtCurrentDate">&nbsp;</p>
-          </div>
-
-          <div class="col-md-6">
-            <div id="divCurrentWeather" class="pull-right">&nbsp;</div>
-          </div>
-
+        <div class="page-header">
+          <h1>My Dashboard</h1>
         </div>
-      </div>
 
-      <section class="tasks">
+        <div class="jumbotron">
+          <div class="row">
+
+            <div class="col-md-6">
+              <h1 id="txtCurrentTime">&nbsp;</h1>
+              <p id="txtCurrentDate">&nbsp;</p>
+            </div>
+
+            <div class="col-md-6">
+              <div id="divCurrentWeather" class="pull-right">&nbsp;</div>
+            </div>
+
+          </div>
+        </div>
 
         <div class="row">
-
-          <div class="col-md-6">
-            <h3>Add a Task</h3>
-            <div class="input-group">
-              <input id="txtNewTask" type="text" class="form-control" placeholder="I need to...">
-              <span class="input-group-btn">
-                <button id="btnAddTask" class="btn btn-default" type="button">Add Task</button>
-              </span>
-            </div>
-          </div>
 
           <div class="col-md-6">
             <div id="divDailyQuote"></div>
           </div>
 
         </div>
-
-        <hr>
-
-        <div class="task-list">
-          <div class="row">
-
-            <div class="col-md-6">
-              <h3>To Do <span id="numToDoTasks" class="badge">0</span></h3>
-
-              <div id="toDoTaskList" class="list-group"></div>
-            </div>
-
-            <div class="col-md-6">
-              <h3>In Progress <span id="numInProgressTasks" class="badge">0</span></h3>
-
-              <div id="inProgressTaskList" class="list-group"></div>
-            </div>
-
-          </div>
-
-          <div class="row">
-            <div class="col-md-6">
-              <h3>Completed <span id="numCompletedTasks" class="badge">0</span></h3>
-              <div id="completedTaskList" class="list-group"></div>
-            </div>
-          </div>
-        </div>
-
-      </section>
-
-    </div><!--.container-->
+      </div>
 
     </body>
 </html>
