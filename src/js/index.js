@@ -52,14 +52,14 @@ function initialize() {
   window.setInterval(updateClock, 1000);
 
 
-  let makeAjaxRequest = (source) => {
+  let makeAjaxRequest = (source, callback) => {
     let request = new XMLHttpRequest();
 
     request.open('GET', source);
 
     request.onreadystatechange = () => {
       if (request.readyState === 4 && request.status === 200) {
-        return JSON.parse(request.responseText);
+        callback(JSON.parse(request.responseText));
       }
     };
 
@@ -68,45 +68,48 @@ function initialize() {
 
 
   let updateWeather = () => {
-    let currentWeather = 'http://api.openweathermap.org/data/2.5/weather?zip=37067,us&units=imperial&appid=' + weatherApiKey;
-    let data = makeAjaxRequest(currentWeather);
+    divCurrentWeather.innerHTML = '<h1>'
+      + '<i class="wi wi-na"></i>'
+      + '--' + '<i class="wi wi-fahrenheit"></i>' + '</h1><br/><p>'
+      + '<span class="pull-left"><i class="wi wi-strong-wind"></i> ' + '--' + 'mph</span>'
+      + '<span class="pull-right"><i class="wi wi-humidity"></i> ' + '--' + '%</span>' + '</p>';
 
-    if (data) {
+    let updateUI = (data) => {
       let currentTemp = Math.round(data.main.temp) + '<i class="wi wi-fahrenheit"></i>';
       let currentHumidity = '<span class="pull-right"><i class="wi wi-humidity"></i> ' + Math.round(data.main.humidity) + '%</span>';
       let currentWindSpeed = '<span class="pull-left"><i class="wi wi-strong-wind"></i> ' + Math.round(data.wind.speed) + 'mph</span>';
       let currentIcon = '<i class="wi wi-owm-day-' + data.weather[0].id + '"></i>';
 
       divCurrentWeather.innerHTML = '<h1>' + currentIcon + ' ' + currentTemp + '</h1><br/><p>' + currentWindSpeed + ' ' + currentHumidity + '</p>';
-    } else {
-      let currentTemp = '--' + '<i class="wi wi-fahrenheit"></i>';
-      let currentHumidity = '<span class="pull-right"><i class="wi wi-humidity"></i> ' + '--' + '%</span>';
-      let currentWindSpeed = '<span class="pull-left"><i class="wi wi-strong-wind"></i> ' + '--' + 'mph</span>';
-      let currentIcon = '<i class="wi wi-na"></i>';
+    };
 
-      divCurrentWeather.innerHTML = '<h1>' + currentIcon + ' ' + currentTemp + '</h1><br/><p>' + currentWindSpeed + ' ' + currentHumidity + '</p>';
-    }
+    let currentWeather = 'http://api.openweathermap.org/data/2.5/weather?zip=37067,us&units=imperial&appid=' + weatherApiKey;
+    let data = makeAjaxRequest(currentWeather, updateUI);
+
+    // if (!data) {
+    //   let currentTemp = '--' + '<i class="wi wi-fahrenheit"></i>';
+    //   let currentHumidity = '<span class="pull-right"><i class="wi wi-humidity"></i> ' + '--' + '%</span>';
+    //   let currentWindSpeed = '<span class="pull-left"><i class="wi wi-strong-wind"></i> ' + '--' + 'mph</span>';
+    //   let currentIcon = '<i class="wi wi-na"></i>';
+
+    //   divCurrentWeather.innerHTML = '<h1>' + currentIcon + ' ' + currentTemp + '</h1><br/><p>' + currentWindSpeed + ' ' + currentHumidity + '</p>';
+    // }
   };
   window.setInterval(updateWeather, 180000);
 
 
   let updateQuote = () => {
-    let currentQuote = 'http://quotes.rest/qod.json';
-    let didUpdate = false;
+    divDailyQuote.innerHTML = '<blockquote>' + '<p>quote</p>' + '<footer><cite>author</cite></footer>' + '</blockquote>';
 
-    if (!didUpdate) {
-      let quoteData = makeAjaxRequest(currentQuote);
+    let updateUI = (data) => {
+      let quoteContent = '<p>' + quoteData.contents.quotes[0].quote + '</p>';
+      let quoteAuthor = '<footer><cite>' + quoteData.contents.quotes[0].author + '</cite></footer>';
 
-      if (quoteData) {
-        let quoteContent = '<p>' + quoteData.contents.quotes[0].quote + '</p>';
-        let quoteAuthor = '<footer><cite>' + quoteData.contents.quotes[0].author + '</cite></footer>';
-
-        divDailyQuote.innerHTML = '<blockquote>' + quoteContent + quoteAuthor + '</blockquote>';
-        didUpdate = true;
-      } else {
-        divDailyQuote.innerHTML = defaultQuote;
-      }
+      divDailyQuote.innerHTML = '<blockquote>' + quoteContent + quoteAuthor + '</blockquote>';
     }
+
+    let currentQuote = 'http://quotes.rest/qod.json';
+    let quoteData = makeAjaxRequest(currentQuote, updateUI);
   };
   window.setInterval(updateQuote, 3600000);
 
